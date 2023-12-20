@@ -14,23 +14,28 @@
     }
 
     #question {
-      width: 70vh;
+      width: 100%;
+      height: 100%;
+      margin-top: 10px;
+    }
+
+    #question-div {
+      width: 70%;
       height: 100px;
       padding: 10px;
-      margin-top: 10px;
     }
 
     #answer-container {
       border: 1px solid #ddd;
       padding: 10px;
       margin-top: 10px;
-      width: 70vh;
+      width: 70%;
     }
   </style>
 </head>
 <body>
   <h1>MattGPT</h1>
-  <div><textarea id="question" wrap="soft" placeholder="Talk to Matt!"></textarea></div>
+  <div id="question-div"><textarea id="question" wrap="soft" placeholder="Talk to Matt!"></textarea></div>
   <div><br><button onclick="askMattGPT()">Get a Response</button></div>
   <div id="answer-container"><p id="answer"></p></div>
   <div id="nowgood-message" style="color: red; text-align: center;"></div>
