@@ -31,6 +31,13 @@
       margin-top: 10px;
       width: 70%;
     }
+
+    #nowgood-message {
+      width: 70%;
+      padding: 10px;
+      color: red; 
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -38,13 +45,13 @@
   <div id="question-div"><textarea id="question" wrap="soft" placeholder="Talk to Matt!"></textarea></div>
   <div><br><button onclick="askMattGPT()">Get a Response</button></div>
   <div id="answer-container"><p id="answer"></p></div>
-  <div id="nowgood-message" style="color: red; text-align: center;"></div>
+  <div id="nowgood-message"></div>
 
   <script>
     let animationInterval;
     let nowGoodInterval;
     const animateTextSpeed = 100;
-    const nowGoodSpeedSeconds = 20;
+    const nowGoodSpeedSeconds = 1;
     const answerElement = document.getElementById('answer');
     const nowGoodMessage = document.getElementById('nowgood-message');
     const nowGoodCountLimit = 3;
