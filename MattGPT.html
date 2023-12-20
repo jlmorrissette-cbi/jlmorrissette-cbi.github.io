@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MattGPT</title>
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      flex-direction: column;
+    }
+
+    #question {
+      width: 600px;
+      height: 100px;
+      padding: 10px;
+      margin-top: 10px;
+    }
+
+    #answer-container {
+      border: 1px solid #ddd;
+      padding: 10px;
+      margin-top: 10px;
+      width: 600px;
+    }
+  </style>
+</head>
+<body>
+  <h1>MattGPT</h1>
+  <div><textarea id="question" wrap="soft" placeholder="Talk to Matt!"></textarea></div>
+  <div><br><button onclick="askMattGPT()">Get a Response</button></div>
+  <div id="answer-container"><p id="answer"></p></div>
+  <div id="nowgood-message" style="color: red; text-align: center;"></div>
+
+  <script>
+    let animationInterval;
+    let nowGoodInterval;
+    const animateTextSpeed = 100;
+    const nowGoodSpeedSeconds = 20;
+    const answerElement = document.getElementById('answer');
+    const nowGoodMessage = document.getElementById('nowgood-message');
+    const nowGoodCountLimit = 3;
+    let nowGoodCount = 0;
+
+    clearInterval(nowGoodInterval);
+    nowGoodInterval = setInterval(addNowGood, nowGoodSpeedSeconds * 1000);
+    
+    answers = [
+          "Just be pragmatic",
+          "Go ask Jerry if that sounds about right",
+          "I mean, just don't be yourself",
+          "Dude",
+          "Is that even a question?",
+          "Know your niche",
+          "I'll self report to HR",
+          "I am genericizing this super much",
+          "Think about the practical reality",
+          "I've been told I'm aloof and unavailable",
+          "Rock and roll",
+          "Use some duct tape and bondo",
+          "Everything touches everything else, not in a bad HR way",
+          "Yeah, the rat dad of the 4 turtles"
+    ];
+
+    function addNowGood() {
+      nowGoodCount++;
+      if (nowGoodCount === nowGoodCountLimit + 1) {
+        nowGoodMessage.innerHTML += "Ok, ping me when you're ready...<br>";
+      } else if (nowGoodCount > nowGoodCountLimit + 1) {
+        nowGoodMessage.innerHTML += "";
+      } else {
+        nowGoodMessage.innerHTML += "Now good?<br>";
+      }
+    }
+
+    function animateText(text, element) {
+      let index = 0;
+      animationInterval = setInterval(() => {
+        element.textContent += text[index];
+        index++;
+        if (index === text.length) {
+          clearInterval(animationInterval);
+        }
+      }, animateTextSpeed);
+    }
+
+    function askMattGPT() {
+      nowGoodMessage.innerHTML = "";
+      nowGoodCount = 0;
+      clearInterval(nowGoodInterval);
+      const randomIndex = Math.floor(Math.random() * answers.length);
+      const randomAnswer = answers[randomIndex];
+      clearInterval(animationInterval);
+      answerElement.textContent = '';
+      animateText(randomAnswer, answerElement);
+      nowGoodInterval = setInterval(addNowGood, nowGoodSpeedSeconds * 1000);
+    }
+
+  </script>
+</body>
+</html>
